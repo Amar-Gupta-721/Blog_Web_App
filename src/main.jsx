@@ -72,7 +72,7 @@ const router = createBrowserRouter([
         element: <Post />
       },
       {
-        path: "https://blogapp-mu-puce.vercel.app/verify-email",
+        path: "/verify-email",
         element: <EmailVerification />
       },
       {
