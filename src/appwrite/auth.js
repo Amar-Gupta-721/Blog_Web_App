@@ -30,7 +30,7 @@ export class AuthService {
 
     async sendVerificationEmail() {
         try {
-            return await this.account.createVerification("http://localhost:5173/verify-email");
+            return await this.account.createVerification("https://blogapp-mu-puce.vercel.app/verify-email");
         } catch (error) {
             console.log("Appwrite service :: sendVerificationEmail :: error ", error);
             throw error;
