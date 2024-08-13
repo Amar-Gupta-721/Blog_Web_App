@@ -1,0 +1,14 @@
+{
+    "rewrites": [
+      { "source": "/login", "destination": "/" },
+      { "source": "/signup", "destination": "/" },
+      { "source": "/all-posts", "destination": "/" },
+      { "source": "/add-post", "destination": "/" },
+      { "source": "/edit-post/:slug", "destination": "/" },
+      { "source": "/post/:slug", "destination": "/" },
+      { "source": "/verify-email", "destination": "/" },
+      { "source": "/forgot-password", "destination": "/" },
+      { "source": "/reset-password", "destination": "/" }
+    ]
+  }
+  
