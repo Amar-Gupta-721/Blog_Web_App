@@ -35,10 +35,10 @@ export default function Post() {
     return post ? (
         <div className="py-8 min-w-fit mx-4">
             <Container className='p-4 border-2 shadow-xl rounded-xl'>
-                <div className="flex gap-20 text-3xl m-3 pb-4 ml-0 xl:ml-3 lg:ml-3 md:ml-3">
+                <div className="flex gap-20 text-3xl m-3 md:pb-4 ml-0 xl:ml-3 lg:ml-3 md:ml-3">
                     <div className='grow'>
                         <h2 className='text-lg xl:text-2xl lg:text-2xl md:text-2xl'>By : <span className='font-bold text-xl xl:text-3xl lg:text-3xl md:text-3xl text-green-600'>{post?.userName || "User"}</span></h2>
-                        <h1 className='font-bold text-3xl xl:text-5xl lg:text-5xl md:text-5xl capitalize py-5'>{post.title}</h1>
+                        <h1 className='font-bold text-3xl xl:text-5xl lg:text-5xl md:text-5xl capitalize md:py-5 sm:py-3'>{post.title}</h1>
                     </div>
 
                     <div className='relative'>
@@ -69,7 +69,7 @@ export default function Post() {
                     <img 
                         src={appwriteService.getFilePreview(post.featuredImage)} 
                         alt={post.title} 
-                        className="rounded-xl"
+                        className="rounded-xl max-h-svh max-w-full"
                     /> 
                 </div>
                 
