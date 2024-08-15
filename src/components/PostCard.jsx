@@ -28,16 +28,30 @@ function PostCard({post}) {
             </div>
             <div className='w-3/5 text-left xl:px-4 lg:px-4 md:px-2 py-1 xl:py-3 lg:py-3 md:py-3'
             >
-              <div className="flex items-center text-neutral-500 text-sm lg:text-xl md:text-lg sm:text-sm">
-                <AccessTimeIcon className="mr-1" />
-                <span>{date}</span>
+            <div className="flex items-center text-neutral-500 text-sm lg:text-xl md:text-lg sm:text-sm">
+              <AccessTimeIcon
+                sx={{
+                  fontSize: {
+                    xs: '16px',
+                    sm: '20px',
+                    md: '24px',
+                    lg: '28px',
+                    xl: '28px',
+                  },
+                  marginRight: '0.25rem',
+                }}
+              />
+              <span>{date}</span>
             </div>
               <Link to={`/post/${post.$id}`}>
                 <h2 className='py-2 font-semibold capitalize text-md lg:text-4xl md:text-3xl sm:text-2xl'>{post.title}</h2>
               </Link>
               <h4 className='text-neutral-500 text-sm lg:text-xl md:text-lg sm:text-sm'>By : {post?.userName || "User"}</h4>  {/*change (post?.userName || "user") by post.userName */}
               <Link to={`/post/${post.$id}`}>
-                  <Button children={"Read More"} className='text-sm xl:text-xl lg:text-xl md:text-lg mt-2 xl:mt-3 lg:mt-3 md:mt-3 hover:bg-blue-400'/>
+                <Button
+                children={"Read More"}
+                className="text-xs md:text-sm lg:text-base xl:text-lg mt-2 xl:mt-3 lg:mt-3 md:mt-3 hover:bg-blue-400"
+              />
               </Link>
             </div>
           </div>
