@@ -19,7 +19,7 @@ import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import LoginIcon from '@mui/icons-material/Login';
 import InputIcon from '@mui/icons-material/Input';
 import PersonIcon from '@mui/icons-material/Person';
-import { Divider } from '@mui/material';
+import { Divider, Tooltip } from '@mui/material';
 
 const Header = () => {
   const authStatus = useSelector((state) => state.auth.status);
@@ -76,11 +76,11 @@ const Header = () => {
         <Divider/>
         {userData && (
           <ListItem disablePadding>
-          <ListItemButton>
-            <ListItemIcon><PersonIcon/></ListItemIcon>
-          <ListItemText primary={userData.name}/>
-          </ListItemButton>
-        </ListItem>
+            <ListItemButton>
+              <ListItemIcon><PersonIcon/></ListItemIcon>
+            <ListItemText primary={userData.name} secondary={userData.email}/>
+            </ListItemButton>
+          </ListItem>
         )}
       </List>
     </Box>
@@ -117,8 +117,21 @@ const Header = () => {
               </li>
             )}
             {userData && (
-              <li className='text-neutral-50 inline-block mx-2 px-6 py-2 border border-neutral-100 rounded-2xl bg-neutral-800'>
-              <h3>{userData.name}</h3>
+              <li className='text-neutral-50 inline-block mx-2 px-6 py-2 border border-neutral-100 rounded-full bg-neutral-800'>
+              <Tooltip
+                  title={userData.email}
+                  componentsProps={{
+                    tooltip: {
+                      sx: {
+                        fontSize: '1rem',
+                        backgroundColor: '#333',
+                        color: '#fff',
+                      },
+                    },
+                  }}
+                >
+                  <h3>{userData.name}</h3>
+                </Tooltip>
             </li>
             )}
           </ul>

@@ -11,10 +11,12 @@ function Signup() {
     const dispatch = useDispatch();
     const [error, setError] = useState("");
     const [message, setMessage] = useState("");
+    const [loading, setLoading] = useState(false)
     const { register, handleSubmit } = useForm();
 
     const create = async (data) => {
         setError("");
+        setLoading(true);
         try {
             const userAccount = await authService.createAccount({ ...data });
             if (userAccount) {
@@ -24,11 +26,13 @@ function Signup() {
                     dispatch(login({ userData: currentUserData }));
                     navigate("/");
                 } else {
-                    setMessage("Please check your email and verify your account before logging in...");
+                    setMessage("Please check your email and verify your account before Signup...");
                 }
             }
         } catch (error) {
             setError(error.message);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -40,6 +44,8 @@ function Signup() {
                 </h2>
                 {message && <p className="text-green-600 mt-8 text-center">{message}</p>}
                 {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+                
+                {loading && <p className="text-blue-600 mt-8 text-center">Sending email verification...</p>}
 
                 <form onSubmit={handleSubmit(create)}>
                     <div className="space-y-5">
@@ -71,6 +77,7 @@ function Signup() {
                             type="submit"
                             className="w-full transition ease-in-out delay-10 bg-blue-500 hover:scale-105 hover:bg-blue-900 duration-200 active:bg-blue-300"
                             children="Create Account"
+                            disabled={loading} 
                         />
                     </div>
                 </form>
