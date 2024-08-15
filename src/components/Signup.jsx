@@ -12,6 +12,7 @@ function Signup() {
     const [error, setError] = useState("");
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false)
+    const [emailSent, setEmailSent] = useState(false); // State to track if email is sent
     const { register, handleSubmit } = useForm();
 
     const create = async (data) => {
@@ -27,6 +28,7 @@ function Signup() {
                     navigate("/");
                 } else {
                     setMessage("Please check your email and verify your account before Signup...");
+                    setEmailSent(true); // Set state to true once email is sent
                 }
             }
         } catch (error) {
@@ -77,7 +79,7 @@ function Signup() {
                             type="submit"
                             className="w-full transition ease-in-out delay-10 bg-blue-500 hover:scale-105 hover:bg-blue-900 duration-200 active:bg-blue-300"
                             children="Create Account"
-                            disabled={loading} 
+                            disabled={loading || emailSent} 
                         />
                     </div>
                 </form>

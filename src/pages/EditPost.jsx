@@ -13,8 +13,6 @@ function EditPost() {
             appwritreService.getPost(slug).then((post)=>{
                 if(post){
                     setPost(post)
-
-                    console.log("EditPost post is :   "+post);
                 }
             })
         }
