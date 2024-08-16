@@ -43,12 +43,12 @@ export default function Post() {
 
                     <div className='relative'>
                     {isAuthor && (
-                        <div className='absolute right-0'>
+                        <div className='absolute right-0 -top-4 xl:top-0 lg:top-0 md:top-0'>
                             <Link to={`/edit-post/${post.$id}`}>
                                 
                                 <Button 
                                 bgColor = "bg-neutral-900"
-                                className="mb-2 text-sm xl:text-lg lg:text-lg md:text-lg hover:bg-neutral-600 active:text-black active:bg-white active:border-2 border-neutral-800"
+                                className="md:mb-2 sm:mb-1 text-sm xl:text-lg lg:text-lg md:text-lg hover:bg-neutral-600 active:text-black active:bg-white active:border-2 border-neutral-800"
                                 >
                                     Edit
                                 </Button>
