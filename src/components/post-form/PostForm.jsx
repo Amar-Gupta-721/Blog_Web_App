@@ -189,42 +189,60 @@ function PostForm({ post }) {
 
   const submit = async (data) => {
     try {
+      console.log('Form data before submission:', data); // Debug: Log form data
       alert('Form is submitting'); // Debug: Check if the form is being submitted
-      let file;
+  
+      let file = null;
+      if (data.image && data.image.length > 0) {
+        file = await appwriteService.uploadFile(data.image[0]);
+        console.log('File uploaded:', file); // Debug: Log uploaded file details
+      }
+  
       if (post) {
-        file = data.image?.[0] ? await appwriteService.uploadFile(data.image[0]) : null;
-        if (file) {
+        if (file && post.featuredImage) {
           await appwriteService.deleteFile(post.featuredImage);
+          console.log('Old file deleted:', post.featuredImage); // Debug: Log deleted file ID
         }
-
+  
         const dbPost = await appwriteService.updatePost(post.$id, {
           ...data,
-          featuredImage: file ? file.$id : post.featuredImage
+          featuredImage: file ? file.$id : post.featuredImage,
         });
-
+  
         if (dbPost) {
-          alert('Form submitted successfully'); // Debug: Success alert
+          console.log('Post updated:', dbPost); // Debug: Log updated post details
+          alert('Form submitted successfully');
           // navigate(`/post/${dbPost.$id}`);
+        } else {
+          throw new Error('Post update failed');
         }
       } else {
-        file = await appwriteService.uploadFile(data.image[0]);
+        if (file) {
+          data.featuredImage = file.$id;
+        } else {
+          throw new Error('File upload failed');
+        }
+  
         const dbPost = await appwriteService.createPost({
           ...data,
-          featuredImage: file.$id,
           userName: userData.name,
-          userId: userData.$id
+          userId: userData.$id,
         });
-
+  
         if (dbPost) {
-          alert('Form submitted successfully'); // Debug: Success alert
+          console.log('New post created:', dbPost); // Debug: Log created post details
+          alert('Form submitted successfully');
           // navigate(`/post/${dbPost.$id}`);
+        } else {
+          throw new Error('Post creation failed');
         }
       }
     } catch (error) {
-      console.error('Submit failed:', error);
-      alert('Form submission failed'); // Debug: Failure alert
+      console.error('Submit failed:', error); // Debug: Log error details
+      alert('Form submission failed. Error: ' + error.message); // Debug: Show error message
     }
   };
+  
 
   const slugTransform = useCallback((value) => {
     if (value && typeof value === 'string') {
