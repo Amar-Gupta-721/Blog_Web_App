@@ -35,6 +35,12 @@ function PostForm({ post }) {
   };
 
   const submit = async (data) => {
+
+    if (!post && (!data.image || data.image.length === 0)) {
+      alert("Please upload a featured image.");
+      return;
+    }
+
     if (post) {
       const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
 
@@ -132,7 +138,7 @@ function PostForm({ post }) {
           type="file"
           className="mb-4"
           accept="image/png, image/jpg, image/jpeg, image/gif"
-          {...register("image", { required: !post })}
+          {...register("image")}//, { required: !post }
           onChange={handleImageChange}
         />
         {featuredImagePreview && (
