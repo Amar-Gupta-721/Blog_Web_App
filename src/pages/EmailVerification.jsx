@@ -26,11 +26,11 @@ const EmailVerification = () => {
         };
 
         verifyAndRedirect();
-    }, [searchParams, navigate]);
+    }, [searchParams,navigate]);
 
     return ( <div className="w-full py-8 mt-4 text-center">
         <Container>
-            <h1 className="text-2xl font-bold">Loading...</h1>
+            <h1 className="text-2xl font-bold">Home Page Loading...</h1>
         </Container>
     </div>
     )

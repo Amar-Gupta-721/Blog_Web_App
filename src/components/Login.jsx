@@ -11,24 +11,45 @@ function Login() {
     const dispatch = useDispatch();
     const { register, handleSubmit } = useForm();
     const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false)
 
     const login = async (data) => {
+        setLoading(true)
         setError("");
         try {
+            console.log("Attempting to log in...");
             const session = await authService.login({ ...data });
+            console.log("Login successful, session:", session);
+    
             if (session) {
+                console.log("Fetching current user...");
                 const userData = await authService.getCurrentUser();
-                if (userData && userData.emailVerification) {
-                    dispatch(authLogin({ userData }));
-                    setTimeout(() => navigate("/"), 0);
-                } else {
-                    setError("First Verify your Email");
+                console.log("User data:", userData);
+    
+                if (userData) {
+                    if (userData.emailVerification) {
+                        console.log("Email is verified, logging in...");
+                        dispatch(authLogin({ userData }));
+                        setTimeout(() => {
+                            console.log("Navigating to home...");
+                            navigate("/");
+                        }, 0);
+                    } else {
+                        console.log("Email is not verified, sending verification email...");
+                        await authService.sendVerificationEmail();
+                        setError("Your email is not verified. We have sent you a verification link. Please check your email.");
+                    }
                 }
             }
         } catch (error) {
+            console.error("Error during login:", error);
             setError(error.message);
+        } finally {
+            setLoading(false);
         }
     };
+    
+    
 
     return (
         <div className='flex items-center justify-center w-full px-3'>
@@ -40,6 +61,7 @@ function Login() {
                         Sign Up
                     </Link>
                 </p>
+                {loading && <p className="text-blue-600 mt-8 text-center">Loading...</p>}
                 {error && <p className='text-red-600 mt-8 text-center'>{error}</p>}
                 <form onSubmit={handleSubmit(login)} className='mt-8'>
                     <div className="space-y-5">
