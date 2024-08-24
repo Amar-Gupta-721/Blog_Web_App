@@ -17,32 +17,24 @@ function Login() {
         setLoading(true)
         setError("");
         try {
-            console.log("Attempting to log in...");
             const session = await authService.login({ ...data });
-            console.log("Login successful, session:", session);
     
             if (session) {
-                console.log("Fetching current user...");
                 const userData = await authService.getCurrentUser();
-                console.log("User data:", userData);
     
                 if (userData) {
                     if (userData.emailVerification) {
-                        console.log("Email is verified, logging in...");
                         dispatch(authLogin({ userData }));
                         setTimeout(() => {
-                            console.log("Navigating to home...");
                             navigate("/");
                         }, 0);
                     } else {
-                        console.log("Email is not verified, sending verification email...");
                         await authService.sendVerificationEmail();
                         setError("Your email is not verified. We have sent you a verification link. Please check your email.");
                     }
                 }
             }
         } catch (error) {
-            console.error("Error during login:", error);
             setError(error.message);
         } finally {
             setLoading(false);

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import authService from '../appwrite/auth'; 
 import Container from '../components/container/Container'
@@ -6,6 +6,7 @@ import Container from '../components/container/Container'
 const EmailVerification = () => {
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
+    const [error, setError] = useState(null)
 
     useEffect(() => {
         const verifyAndRedirect = async () => {
@@ -16,12 +17,17 @@ const EmailVerification = () => {
                 try {
                     const verified = await authService.verifyEmail(userId, secret);
                     if (verified) {
-                        console.log("Email verified successfully!");
                         navigate('/');
                     }
+                    else {
+                        setError('Email verification failed. Please try again.');
+                    }
                 } catch (error) {
-                    console.error("Email verification failed:", error);
+                    setError('An error occurred during verification. Please try again.');
                 }
+            }
+            else {
+                setError('Invalid verification link. Please check your email and try again.');
             }
         };
 
