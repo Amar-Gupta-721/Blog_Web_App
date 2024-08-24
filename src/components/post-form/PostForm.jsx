@@ -1,12 +1,13 @@
-import React, { useCallback, useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { useForm } from 'react-hook-form'
 import { Button, Input, Select, RTE } from '../index';
 import appwriteService from '../../appwrite/config';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { ID } from 'appwrite';
 
 function PostForm({ post }) {
-  const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
+  const { register, handleSubmit, control, getValues } = useForm({
     defaultValues: {
       title: post?.title || '',
       slug: post?.$id || '',
@@ -18,6 +19,7 @@ function PostForm({ post }) {
   const navigate = useNavigate();
   const userData = useSelector(state => state.auth.userData);
   const [featuredImagePreview, setFeaturedImagePreview] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     if (post) {
@@ -29,78 +31,68 @@ function PostForm({ post }) {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      const allowedTypes = ["image/png", "image/jpg", "image/jpeg", "image/gif"];
+      if (!allowedTypes.includes(file.type)) {
+        alert("Please select a valid image file (PNG, JPG, JPEG, GIF).");
+        return;
+      }
       const imageUrl = URL.createObjectURL(file);
       setFeaturedImagePreview(imageUrl);
     }
   };
 
   const submit = async (data) => {
+    setIsSubmitting(true); 
 
     if (!post && (!data.image || data.image.length === 0)) {
       alert("Please upload a featured image.");
+      setIsSubmitting(false); 
       return;
     }
 
-    if (post) {
-      const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
+    try {
+      if (post) {
+        const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
 
-      if (file) {
-        await appwriteService.deleteFile(post.featuredImage);
-      }
+        if (file) {
+          await appwriteService.deleteFile(post.featuredImage);
+        }
 
-      const dbPost = await appwriteService.updatePost(
-        post.$id, {
-        ...data,
-        featuredImage: file ? file.$id : undefined
-      });
-
-      if (dbPost) {
-        navigate(`/post/${dbPost.$id}`);
-      }
-    } else {
-      const file = await appwriteService.uploadFile(data.image[0]);
-
-      if (file) {
-        const fileId = file.$id;
-        data.featuredImage = fileId;
-
-        const dbPost = await appwriteService.createPost({
+        const dbPost = await appwriteService.updatePost(
+          post.$id, {
           ...data,
-          userName : userData.name,
-          userId: userData.$id
+          featuredImage: file ? file.$id : undefined
         });
 
         if (dbPost) {
           navigate(`/post/${dbPost.$id}`);
         }
+      } else {
+        const file = await appwriteService.uploadFile(data.image[0]);
+
+        if (file) {
+          const fileId = file.$id;
+          data.featuredImage = fileId;
+
+          const dbPost = await appwriteService.createPost({
+            ...data,
+            userName: userData.name,
+            userId: userData.$id,
+            slug : ID.unique()
+          });
+
+          if (dbPost) {
+            navigate(`/post/${dbPost.$id}`);
+          }
+        }
       }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("An error occurred while submitting the form.");
+    } finally {
+      setIsSubmitting(false); 
     }
   };
-
-  const slugTransform = useCallback((value) => {
-    if (value && typeof value === 'string') {
-      return value
-        .trim()
-        .toLowerCase()
-        .replace(/[^\w\s-]/g, '') // Remove any non-word characters except spaces and hyphens
-        .replace(/\s+/g, '-') // Replace spaces with hyphens
-        .replace(/-+/g, '-') // Replace multiple hyphens with a single hyphen
-        .replace(/^-+|-+$/g, ''); // Remove leading and trailing hyphens
-    }
-    return '';
-  }, []);
-
-  useEffect(() => {
-    const subscription = watch((value, { name }) => {
-      if (name === 'title') {
-        setValue('slug', slugTransform(value.title), { shouldValidate: true });
-      }
-    });
-
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, [watch, slugTransform, setValue]);
 
   return (
     <form onSubmit={handleSubmit(submit)} className='flex flex-wrap'>
@@ -112,18 +104,6 @@ function PostForm({ post }) {
           {...register("title", {
             required: true
           })}
-        />
-        <Input
-          label="Slug :"
-          placeholder="Slug"
-          readOnly={post}
-          className="mb-4"
-          {...register("slug", {
-            required: true
-          })}
-          onInput={(e) => {
-            setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
-          }}
         />
         <RTE
           label="Content :"
@@ -138,7 +118,7 @@ function PostForm({ post }) {
           type="file"
           className="mb-4"
           accept="image/png, image/jpg, image/jpeg, image/gif"
-          {...register("image")}//, { required: !post }
+          {...register("image")}
           onChange={handleImageChange}
         />
         {featuredImagePreview && (
@@ -152,7 +132,13 @@ function PostForm({ post }) {
           className="mb-4"
           {...register("status", { required: true })}
         />
-        <Button children={`${post?"update":"submit"}`} type="submit" className={`w-full bg-blue-500 hover:bg-blue-900 active:bg-red-600 ${post ? "bg-green-500" : undefined}`} />
+         <Button
+          type="submit"
+          className={`w-full ${isSubmitting ? 'bg-gray-500 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-900 active:bg-red-600'} ${post ? "bg-green-500" : undefined}`}
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? 'Submitting...' : post ? 'Update' : 'Submit'}
+        </Button>
       </div>
     </form>
   );
