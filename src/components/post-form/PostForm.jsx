@@ -137,7 +137,7 @@ function PostForm({ post }) {
           label="Featured Image :"
           type="file"
           className="mb-4"
-          accept="image/png, image/jpg, image/jpeg, image/gif"
+          accept="image/png, image/jpg, image/jpeg, image/gif, image/avif"
           {...register("image")}//, { required: !post }
           onChange={handleImageChange}
         />
