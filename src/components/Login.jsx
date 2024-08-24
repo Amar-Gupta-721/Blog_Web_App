@@ -80,7 +80,7 @@ function Login() {
                         <Button
                             type="submit"
                             className="w-full transition ease-in-out delay-10 bg-blue-500 hover:scale-105 hover:bg-blue-900 duration-200 active:bg-blue-300"
-                            children="Sign in"
+                            children="Log in"
                         ></Button>
                     </div>
                 </form>
