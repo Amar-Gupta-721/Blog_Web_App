@@ -33,7 +33,7 @@ const ForgotPassword = () => {
                     <div className="space-y-5">
                         <Input
                             label="Email: "
-                            placeholder="Enter your email"
+                            placeholder="Enter your registered email"
                             type="email"
                             {...register("email", {
                                 required: true,
