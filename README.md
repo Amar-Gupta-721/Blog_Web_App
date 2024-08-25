@@ -18,4 +18,4 @@ I've developed a blog web app with various features such as login, logout, signu
 4. CRUD Operations: Full-fledged Create, Read, Update, and Delete functionalities to manage content efficiently. 
 5. Responsive Design: The application is fully responsive and optimized for all screen sizes—from mobile devices to large desktop monitors.
 
-6. The project is live! 🌐 https://lnkd.in/gs9UGva8.
+6. The project is live! 🌐 https://blogapp-mu-puce.vercel.app/
