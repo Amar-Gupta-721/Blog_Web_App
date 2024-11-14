@@ -13,7 +13,7 @@ The **Blog Web App** is a full-stack blogging platform where users can create, v
 
 ## **Technologies Used**
 - **Frontend**: ReactJS, Tailwind CSS, Material-UI (MUI)  
-- **Backend**: Appwrite (authentication, database, and API integration)  
+- **Backend**: Appwrite (authentication, email verification, forgot password, database )  
 - **Deployment**: Vercel  
 - **Version Control**: GitHub  
 
@@ -50,9 +50,6 @@ To run the project locally, follow these steps:
 Create a ```.env``` file in the backend directory and add the following:
 
 ```bash 
-VITE_APPWRITE_PROJECT_ID=<your-project-id>
-VITE_APPWRITE_ENDPOINT=<your-appwrite-endpoint>
-
 VITE_APPWRITE_URL = <your-appwrite-endpoint>
 VITE_APPWRITE_PROJECT_ID = <your-appwrite-projectId>
 VITE_APPWRITE_DATABASE_ID =<your-appwrite-databaseId>
