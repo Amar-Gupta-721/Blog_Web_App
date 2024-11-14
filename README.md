@@ -52,6 +52,13 @@ Create a ```.env``` file in the backend directory and add the following:
 ```bash 
 VITE_APPWRITE_PROJECT_ID=<your-project-id>
 VITE_APPWRITE_ENDPOINT=<your-appwrite-endpoint>
+
+VITE_APPWRITE_URL = <your-appwrite-endpoint>
+VITE_APPWRITE_PROJECT_ID = <your-appwrite-projectId>
+VITE_APPWRITE_DATABASE_ID =<your-appwrite-databaseId>
+VITE_APPWRITE_COLLECTION_ID = <your-appwrite-collectionId>
+VITE_APPWRITE_BUCKET_ID = <your-appwrite-bucketId>
+VITE_RTE_API_KEY = <your-rte-apiKey>
 ```
 5. **Run the Application:** Start the development server:
 ```bash 
