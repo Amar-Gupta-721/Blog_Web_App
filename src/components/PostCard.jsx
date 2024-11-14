@@ -44,7 +44,7 @@ function PostCard({post}) {
               <span>{date}</span>
             </div>
               <Link to={`/post/${post.$id}`}>
-                <h2 className='py-2 font-semibold capitalize text-md lg:text-4xl md:text-3xl sm:text-2xl'>{post.title}</h2>
+                <h2 className='py-2 font-semibold capitalize truncate text-md lg:text-4xl md:text-3xl sm:text-2xl'>{post.title}</h2>
               </Link>
               <h4 className='text-neutral-500 text-sm lg:text-xl md:text-lg sm:text-sm'>By : {post?.userName || "User"}</h4>  {/*change (post?.userName || "user") by post.userName */}
               <Link to={`/post/${post.$id}`}>
