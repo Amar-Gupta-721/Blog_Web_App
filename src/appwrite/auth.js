@@ -84,7 +84,7 @@ export class AuthService {
 
     async sendPasswordRecovery(email) {
         try {
-            await this.account.createRecovery(email, 'http://localhost:5173/reset-password');
+            await this.account.createRecovery(email, 'https://blogapp-mu-puce.vercel.app/reset-password');
         } catch (error) {
             console.log("Appwrite service :: sendPasswordRecovery :: error ", error);
             throw error;
