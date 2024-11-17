@@ -32,8 +32,9 @@ const ResetPassword = () => {
     };
 
     return (
-        <div className='flex items-center justify-center w-full'>
-            <div className="mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10">
+       <div className="py-8">
+         <div className='flex items-center justify-center w-full px-3'>
+            <div className="mx-auto w-full max-w-lg rounded-xl p-10 border border-black/10 backdrop-blur-3xl">
                 <h2 className="text-center text-2xl font-bold leading-tight">Reset Password</h2>
                 {error && <p className='text-red-600 mt-8 text-center'>{error}</p>}
                 {success && <p className='text-green-600 mt-8 text-center'>{success}</p>}
@@ -69,6 +70,7 @@ const ResetPassword = () => {
                 </form>
             </div>
         </div>
+       </div>
     );
 };
 

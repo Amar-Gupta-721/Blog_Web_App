@@ -95,8 +95,8 @@ function PostForm({ post }) {
   };
 
   return (
-    <form onSubmit={handleSubmit(submit)} className='flex flex-wrap'>
-      <div className="w-full xl:w-2/3 lg:w-2/3 md:w-2/3 px-2 mb-3">
+    <form onSubmit={handleSubmit(submit)} className='flex flex-wrap backdrop-blur-3xl'>
+      <div className="w-full xl:w-2/3 lg:w-2/3 md:w-2/3 px-2 mb-3 text-white ">
         <Input
           label="Title :"
           placeholder="Title"
@@ -112,7 +112,7 @@ function PostForm({ post }) {
           defaultValue={getValues("content")}
         />
       </div>
-      <div className="w-full xl:w-1/3 lg:w-1/3 md:w-1/3 px-2">
+      <div className="w-full xl:w-1/3 lg:w-1/3 md:w-1/3 px-2 text-white">
         <Input
           label="Featured Image :"
           type="file"
@@ -134,7 +134,7 @@ function PostForm({ post }) {
         />
          <Button
           type="submit"
-          className={`w-full ${isSubmitting ? 'bg-gray-500 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-900 active:bg-red-600'} ${post ? "bg-green-500" : undefined}`}
+          className={`w-full  ${isSubmitting ? 'bg-gray-500 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-900 active:bg-red-600'} ${post ? "bg-green-500" : undefined}`}
           disabled={isSubmitting}
         >
           {isSubmitting ? 'Submitting...' : post ? 'Update' : 'Submit'}

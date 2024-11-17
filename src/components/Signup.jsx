@@ -40,7 +40,7 @@ function Signup() {
 
     return (
         <div className="flex items-center justify-center px-3 w-full">
-            <div className="mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10">
+            <div className="mx-auto w-full max-w-lg backdrop-blur-3xl rounded-xl p-10 border border-black/10 text-white">
                 <h2 className="text-center text-2xl font-bold leading-tight mb-3">
                     Create a new Account 
                 </h2>

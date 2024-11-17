@@ -21,10 +21,11 @@ const ForgotPassword = () => {
     };
 
     return (
-        <div className='flex items-center justify-center w-full pt-4'>
-            <div className="mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10">
+        <div className='py-8'>
+            <div className='flex items-center justify-center w-full px-3'>
+            <div className="mx-auto text-white w-full max-w-lg rounded-xl p-10 border border-black/10 backdrop-blur-3xl">
                 <h2 className="text-center text-2xl font-bold leading-tight">Forgot Password</h2>
-                <p className="mt-2 text-center text-base text-black/60">
+                <p className="mt-2 text-center text-base text-white">
                     Enter your email address to receive a password reset link.
                 </p>
                 {error && <p className='text-red-600 mt-8 text-center'>{error}</p>}
@@ -51,6 +52,7 @@ const ForgotPassword = () => {
                     </div>
                 </form>
             </div>
+        </div>
         </div>
     );
 };

@@ -33,8 +33,8 @@ export default function Post() {
     }
 
     return post ? (
-        <div className="py-8 min-w-fit mx-4">
-            <Container className='p-4 border-2 shadow-xl rounded-xl'>
+        <div className="py-8 min-w-fit mx-4 backdrop-blur-3xl">
+            <Container className='p-4 border-2 border-gray-700 shadow-xl rounded-xl'>
                 <div className="flex gap-20 text-3xl m-3 md:pb-4 ml-0 xl:ml-3 lg:ml-3 md:ml-3">
                     <div className='grow'>
                         <h2 className='text-lg xl:text-2xl lg:text-2xl md:text-2xl'>By : <span className='font-bold text-xl xl:text-3xl lg:text-3xl md:text-3xl text-green-600'>{post?.userName || "User"}</span></h2>
@@ -47,15 +47,15 @@ export default function Post() {
                             <Link to={`/edit-post/${post.$id}`}>
                                 
                                 <Button 
-                                bgColor = "bg-neutral-900"
-                                className="md:mb-2 sm:mb-1 text-sm xl:text-lg lg:text-lg md:text-lg hover:bg-neutral-600 active:text-black active:bg-white active:border-2 border-neutral-800"
+                                bgColor = "backdrop-blur-3xl"
+                                className="md:mb-2 sm:mb-1 text-sm xl:text-lg lg:text-lg md:text-lg hover:bg-neutral-800 active:text-black active:bg-white active:border-2 border-neutral-800"
                                 >
                                     Edit
                                 </Button>
                             </Link>
                             <Button
-                            bgColor="bg-neutral-900"
-                            className='text-sm xl:text-lg lg:text-lg md:text-lg hover:bg-neutral-600 active:text-black active:bg-white active:border-2 border-neutral-800'
+                            bgColor="backdrop-blur-3xl"
+                            className='text-sm xl:text-lg lg:text-lg md:text-lg hover:bg-neutral-800 active:text-black active:bg-white active:border-2 border-neutral-800'
                             onClick = {deletePost}
                             >
                                 Delete
@@ -73,7 +73,7 @@ export default function Post() {
                     /> 
                 </div>
                 
-                <div className="browser-css text-xl leading-8 text-neutral-600">
+                <div className="browser-css text-xl leading-8 text-neutral-300">
                     {parse(post.content)}</div>
             </Container>
         </div>

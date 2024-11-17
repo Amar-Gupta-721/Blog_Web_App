@@ -54,19 +54,19 @@ function AllPosts() {
             <Container>
                 <div className="flex justify-center mb-4 text-md lg:text-xl md:text-xl sm:text-xl">
                 <button
-                        className="mr-4 px-4 py-2 rounded-2xl hover:bg-blue-500 hover:text-white focus:bg-blue-700 focus:text-white"
+                        className="mr-4 px-4 py-2 backdrop-blur-3xl rounded-2xl hover:bg-blue-500 hover:text-white focus:bg-blue-700 focus:text-white"
                         onClick={() => setPosts(usersPosts)}
                     >
                         All Posts
                     </button>
                     <button
-                        className="mr-4 px-4 py-2 rounded-2xl hover:bg-blue-500 hover:text-white focus:bg-blue-700 focus:text-white"
+                        className="mr-4 px-4 py-2 backdrop-blur-3xl rounded-2xl hover:bg-blue-500 hover:text-white focus:bg-blue-700 focus:text-white"
                         onClick={() => setPosts(activePosts)}
                     >
                         Active Posts
                     </button>
                     <button
-                        className="px-4 py-2 rounded-2xl hover:bg-blue-500 hover:text-white focus:bg-blue-700 focus:text-white"
+                        className="px-4 py-2 backdrop-blur-3xl rounded-2xl hover:bg-blue-500 hover:text-white focus:bg-blue-700 focus:text-white"
                         onClick={() => setPosts(inactivePosts)}
                     >
                         Inactive Posts

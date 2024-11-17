@@ -23,13 +23,18 @@ function App() {
   },[])
 
   return !loading ? (
-    <div className='flex flex-col min-h-screen min-w-fit'>
-        <Header/>
-        <main className='flex-grow'>
-          <Outlet/>
-        </main>
-        <Footer/>
-    </div>
+    <div className="relative flex flex-col min-h-screen min-w-fit text-white bg-slate-950">
+  <div className="absolute inset-0 bg-[radial-gradient(circle_500px_at_50%_200px,#3e3e3e,transparent)] bg-fixed z-0"></div>
+  
+  <div className="relative flex flex-col min-h-screen min-w-fit text-white">
+    <Header />
+    <main className="flex-grow">
+      <Outlet />
+    </main>
+    <Footer />
+  </div>
+</div>
+
   ) : (null)
 }
 

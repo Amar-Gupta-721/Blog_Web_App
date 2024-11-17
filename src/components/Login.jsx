@@ -45,9 +45,9 @@ function Login() {
 
     return (
         <div className='flex items-center justify-center w-full px-3'>
-            <div className="mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10">
-                <h2 className="text-center text-2xl font-bold leading-tight">Log in to your account</h2>
-                <p className="mt-2 text-center text-base text-black/60">
+            <div className="mx-auto w-full max-w-lg rounded-xl p-10 border border-black/10 backdrop-blur-3xl">
+                <h2 className="text-center text-white text-2xl font-bold leading-tight">Log in to your account</h2>
+                <p className="mt-2 text-center text-base text-white">
                     Don&apos;t have any account?&nbsp;
                     <Link to="/signup" className="font-medium text-primary transition-all duration-200 hover:underline">
                         Sign Up
@@ -56,7 +56,7 @@ function Login() {
                 {loading && <p className="text-blue-600 mt-8 text-center">Loading...</p>}
                 {error && <p className='text-red-600 mt-8 text-center'>{error}</p>}
                 <form onSubmit={handleSubmit(login)} className='mt-8'>
-                    <div className="space-y-5">
+                    <div className="space-y-5 text-white">
                         <Input
                             label="Email: "
                             placeholder="Enter your email"
@@ -85,7 +85,7 @@ function Login() {
                     </div>
                 </form>
                 <p className="mt-4 text-center">
-                    <Link to="/forgot-password" className="text-blue-600 hover:underline">
+                    <Link to="/forgot-password" className="text-white hover:underline">
                         Forgot Password?
                     </Link>
                 </p>
