@@ -24,8 +24,8 @@ function PostCard({ post }) {
   }, []);
   return (
     <>
-      <div className="my-4 mx-2 backdrop-blur-3xl lg:m-8 md:m-4 sm:m-2 px-30">
-        <div className="flex shadow-xl overflow-auto hover:shadow-md duration-200 ease-in-out hover:scale-105 rounded-xl max-h-48 lg:max-h-64 lg:min-h-56 ">
+      <div className="my-4 mx-2 backdrop-blur-3xl lg:m-8 md:m-4 sm:m-2 px-30 hover:shadow-md duration-200 ease-in-out hover:scale-105">
+        <div className="flex shadow-xl overflow-auto rounded-xl max-h-48 lg:max-h-64 lg:min-h-56 ">
           <div className="w-2/5 mr-2">
             <img
               className="w-full h-full max-w-48 max-h-48 lg:max-h-80 lg:max-w-96 md:max-w-80 sm:max-w-52 sm:max-h-52 rounded-l-xl"
