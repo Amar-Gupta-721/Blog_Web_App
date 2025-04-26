@@ -1,4 +1,4 @@
-import conf from '../../conf/conf';
+import conf from '../../conf/conf.js';
 import React, { useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { Button, Input, Select, RTE } from '../index';
