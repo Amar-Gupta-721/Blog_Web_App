@@ -168,10 +168,10 @@ function PostForm({ post }) {
   };
 
   return (
-    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap backdrop-blur-3xl">
+    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap backdrop-blur-3xl mt-6">
       <div className="w-full xl:w-2/3 lg:w-2/3 md:w-2/3 px-2 mb-3 text-white">
         <Input
-          label="Title :"
+          label="Title:"
           placeholder="Title"
           className="mb-4"
           {...register("title", { required: true })}
@@ -189,7 +189,7 @@ function PostForm({ post }) {
         </div>
 
         <RTE
-          label="Content :"
+          label="Content:"
           name="content"
           control={control}
           defaultValue={getValues("content")}
@@ -202,7 +202,7 @@ function PostForm({ post }) {
           name="image"
           render={({ field: { onChange } }) => (
             <Input
-              label="Featured Image :"
+              label="Featured Image:"
               type="file"
               className="mb-4"
               accept="image/png, image/jpg, image/jpeg, image/gif"
@@ -222,7 +222,7 @@ function PostForm({ post }) {
 
         <Select
           options={["active", "inactive"]}
-          label="Status :"
+          label="Status:"
           className="mb-4"
           {...register("status", { required: true })}
         />
