@@ -40,19 +40,40 @@ function Home() {
     );
   }
 
+  // if (!userData) {
+  //   return (
+  //     <div className="w-full py-8 mt-4 text-center">
+  //       <Container>
+  //         <Link to="/login">
+  //           <h1 className="text-2xl font-bold hover:text-gray-500">
+  //             Login to read posts
+  //           </h1>
+  //         </Link>
+  //       </Container>
+  //     </div>
+  //   );
+  // }
+
   if (!userData) {
     return (
-      <div className="w-full py-8 mt-4 text-center">
+      <div className="w-full py-20 mt-4 flex items-center justify-center bg-transparent text-white">
         <Container>
-          <Link to="/login">
-            <h1 className="text-2xl font-bold hover:text-gray-500">
-              Login to read posts
+          <div className="flex flex-col items-center gap-6">
+            <h1 className="text-3xl md:text-4xl font-extrabold text-center">
+              You need to <span className="text-blue-400">Login</span> to read amazing posts!
             </h1>
-          </Link>
+            <Link
+              to="/login"
+              className="px-6 py-3 text-lg font-semibold text-white bg-blue-500 rounded-full shadow-md hover:bg-blue-700 hover:scale-105 transition-all duration-300"
+            >
+              🚀 Login Now
+            </Link>
+          </div>
         </Container>
       </div>
     );
   }
+  
 
   if (posts.length === 0) {
     return (
