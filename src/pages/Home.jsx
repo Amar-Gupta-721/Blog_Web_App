@@ -40,20 +40,6 @@ function Home() {
     );
   }
 
-  // if (!userData) {
-  //   return (
-  //     <div className="w-full py-8 mt-4 text-center">
-  //       <Container>
-  //         <Link to="/login">
-  //           <h1 className="text-2xl font-bold hover:text-gray-500">
-  //             Login to read posts
-  //           </h1>
-  //         </Link>
-  //       </Container>
-  //     </div>
-  //   );
-  // }
-
   if (!userData) {
     return (
       <div className="w-full py-20 mt-4 flex items-center justify-center bg-transparent text-white">
