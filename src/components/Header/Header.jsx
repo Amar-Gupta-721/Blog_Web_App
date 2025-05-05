@@ -41,8 +41,8 @@ const Header = () => {
     { name: 'Home', slug: '/', icon: <HomeIcon />, active: true },
     { name: 'Login', slug: '/login', icon: <LoginIcon />, active: !authStatus },
     { name: 'Signup', slug: '/signup', icon: <InputIcon />, active: !authStatus },
-    { name: 'My Posts', slug: '/all-posts', icon: <LibraryBooksIcon />, active: authStatus },
-    { name: 'Add Post', slug: '/add-post', icon: <PostAddIcon />, active: authStatus },
+    { name: 'My Blogs', slug: '/all-posts', icon: <LibraryBooksIcon />, active: authStatus },
+    { name: 'Add Blog', slug: '/add-post', icon: <PostAddIcon />, active: authStatus },
   ];
 
   const toggleDrawer = (open) => (event) => {

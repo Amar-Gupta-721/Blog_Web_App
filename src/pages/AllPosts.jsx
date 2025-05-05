@@ -62,21 +62,21 @@ function AllPosts() {
               className="px-6 py-2 rounded-full text-white bg-gray-700 hover:bg-gray-600 active:scale-95 transition-all duration-200 shadow-md"
               onClick={() => setPosts(usersPosts)}
             >
-              All Posts
+              All Blogs
             </button>
 
             <button
               className="px-6 py-2 rounded-full text-white bg-gray-700 hover:bg-gray-600 active:scale-95 transition-all duration-200 shadow-md"
               onClick={() => setPosts(activePosts)}
             >
-              Active Posts
+              Active Blogs
             </button>
 
             <button
               className="px-6 py-2 rounded-full text-white bg-gray-700 hover:bg-gray-600 active:scale-95 transition-all duration-200 shadow-md"
               onClick={() => setPosts(inactivePosts)}
             >
-              Inactive Posts
+              Inactive Blogs
             </button>
           </div>
         </div>
@@ -86,7 +86,7 @@ function AllPosts() {
             posts.map((post) => <PostCard key={post.$id} post={post} />)
           ) : (
             <div className="col-span-full text-center text-gray-500">
-              No posts found.
+              No Blogs found.
             </div>
           )}
         </div>
